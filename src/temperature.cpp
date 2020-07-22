@@ -1,0 +1,34 @@
+#include <DallasTemperature.h>
+
+#define TEMPERATURE_PRECISION 10
+
+// Globals
+extern DallasTemperature sensors;
+extern DeviceAddress tempAddress;
+extern float temperature;
+
+void setupTemperature() {
+  if (sensors.getAddress(tempAddress, 0)) {
+    Serial.print("Found device with address: ");
+    for (uint8_t i = 0; i < 8; i++) {
+      if (tempAddress[i] < 16) Serial.print("0");
+      Serial.println(tempAddress[i], HEX);
+    }
+
+    sensors.setResolution(tempAddress, TEMPERATURE_PRECISION);
+    sensors.setWaitForConversion(true);
+  } else {
+    // Guess it can't find the sensor
+    Serial.println("Cannot find temperature probe...");
+  }
+}
+
+void updateTemperature() {
+  sensors.requestTemperatures();
+  temperature = sensors.getTempC(tempAddress);
+  if (temperature == DEVICE_DISCONNECTED_C) {
+    return;
+  }
+
+  Serial.println(temperature);
+}
