@@ -7,11 +7,11 @@ on:
 jobs:
   helloworld:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Print hello world in the console
         run: echo Hello world!
-    
+
   build:
     runs-on: ubuntu-latest
 
@@ -26,4 +26,4 @@ jobs:
     - name: Install library dependencies
       run: platformio lib -g install 1
     - name: Run PlatformIO
-      run: platformio run .
+      run: platformio run
