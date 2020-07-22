@@ -5,13 +5,6 @@ on:
     branches: [master]
 
 jobs:
-  helloworld:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Print hello world in the console
-        run: echo Hello world!
-
   build:
     runs-on: ubuntu-latest
 
