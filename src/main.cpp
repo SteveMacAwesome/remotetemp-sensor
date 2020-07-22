@@ -51,9 +51,7 @@ uint8_t hue = 0;
 float temperature = 0.0;
 
 // Forward-declare functions
-// void setupTemperature();
 void setupLeds();
-// void updateTemperature();
 void updateLeds();
 
 void setup() {
@@ -77,32 +75,6 @@ void loop() {
   step++;
   delay(20);
 }
-
-// void setupTemperature() {
-//   if (sensors.getAddress(tempAddress, 0)) {
-//     Serial.print("Found device with address: ");
-//     for (uint8_t i = 0; i < 8; i++) {
-//       if (tempAddress[i] < 16) Serial.print("0");
-//       Serial.println(tempAddress[i], HEX);
-//     }
-
-//     sensors.setResolution(tempAddress, TEMPERATURE_PRECISION);
-//     sensors.setWaitForConversion(true);
-//   } else {
-//     // Guess it can't find the sensor
-//     Serial.println("Cannot find temperature probe...");
-//   }
-// }
-
-// void updateTemperature() {
-//   sensors.requestTemperatures();
-//   temperature = sensors.getTempC(tempAddress);
-//   if (temperature == DEVICE_DISCONNECTED_C) {
-//     return;
-//   }
-
-//   Serial.println(temperature);
-// }
 
 void setupLeds() {
   FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
