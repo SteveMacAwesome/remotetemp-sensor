@@ -1,10 +1,14 @@
+#include <pinout.h>
 #include <DallasTemperature.h>
 
 #define TEMPERATURE_PRECISION 10
 
+// Set up Dallas Temperature probe
+OneWire oneWire(ONE_WIRE_BUS);
+DallasTemperature sensors(&oneWire);
+DeviceAddress tempAddress;
+
 // Globals
-extern DallasTemperature sensors;
-extern DeviceAddress tempAddress;
 extern float temperature;
 
 void setupTemperature() {
