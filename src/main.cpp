@@ -3,8 +3,16 @@
 
 #include <pinout.h>
 #include <temperature.h>
-#include <neopixels.h>
 #include <radio.h>
+
+#define MEASUREMENT_INTERVAL_MS 5000
+
+const uint8_t SEG_ERR[] = {
+  SEG_A | SEG_D | SEG_E | SEG_F | SEG_G, // E
+  SEG_E | SEG_G,                         // r
+  SEG_E | SEG_G,                         // r
+	0
+	};
 
 // Set up 7-segment driver
 TM1637Display display(LED_CLK_PIN, LED_DAT_PIN);
@@ -19,14 +27,24 @@ void setup() {
   setupTemperature();
   setupRadio();
 
-  display.setBrightness(7);
+  display.setBrightness(2);
+  display.clear();
+
+  updateTemperature();
 }
 
+
+
 void loop() {
-  if (millis() > prevMillis + 10000) {
+  if (millis() > prevMillis + MEASUREMENT_INTERVAL_MS) {
     prevMillis = millis();
     updateTemperature();
-    display.showNumberDecEx(temperature * 100, 64);
+
+    if (temperature == -127) {
+      display.setSegments(SEG_ERR);
+    } else {
+      display.showNumberDecEx(temperature * 100, 64);
+    }
   }
 
   updateRadio();

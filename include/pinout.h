@@ -1,9 +1,9 @@
 #pragma once
 
-#define LED_CLK_PIN 2
-#define LED_DAT_PIN 3
+#define LED_CLK_PIN 3
+#define LED_DAT_PIN 4
 
-#define NEOPIXEL_PIN 4
+// #define NEOPIXEL_PIN 4
 
 #define ONE_WIRE_BUS 8
 

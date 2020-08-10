@@ -2,7 +2,7 @@
 #include <SPI.h>
 #include <pinout.h>
 
-#define RADIO_ID 1              // Our radio's id, 0 = hub
+#define RADIO_ID 2              // Our radio's id, 0 = hub
 #define DESTINATION_RADIO_ID 0  // Id of the radio we will transmit to.
 
 extern float temperature;
